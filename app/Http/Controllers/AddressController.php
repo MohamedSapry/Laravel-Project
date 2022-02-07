@@ -13,8 +13,8 @@ class AddressController extends Controller
      * @return response()
      */
     public function getAlladdresses() {
-        $addresses = Address::get()->toJson(JSON_PRETTY_PRINT);
-        return response($addresses, 200);
+        $addresses = Address::get();
+        return response()->json($addresses, 200);
     }
 
     /**
@@ -25,7 +25,7 @@ class AddressController extends Controller
     public function createAddress(Request $request) {
         
         $validator = Validator::make($request->all(), [
-            'user_id' => 'bail|required', //user_id, area_id in db validation
+            'user_id' => 'bail|required', 
             'area_id' => 'bail|required', 
             'building_number' => 'bail|required',
             'street_name' => 'required',
@@ -43,9 +43,7 @@ class AddressController extends Controller
         $address->defult_address = $request->defult_address;
         $address->save();
 
-        return response()->json([
-            "message" => "Address record created"
-        ], 201);
+        return response()->json($address, 201);
     
     }
 
@@ -56,8 +54,8 @@ class AddressController extends Controller
      */
     public function getAddress($id) {
        if(Address::where('id', $id)->exists()){
-            $address = Address::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($address, 200);
+            $address = Address::where('id', $id)->get();
+            return response()->json($address, 200);
        }else{
         return response()->json([
             "message" => "Address not found"
@@ -85,7 +83,7 @@ class AddressController extends Controller
             if($validator->fails()){
                 return response()->json([
                     "message" => "data not valid"
-                ], 404);
+                ], 400);
             }
             $address->user_id = $request->user_id;
             $address->area_id = $request->area_id;
@@ -95,10 +93,12 @@ class AddressController extends Controller
             $address->number_of_apartment = $request->number_of_apartment;
             $address->defult_address = $request->defult_address;
             $address->save;
+
+            return response()->json($address, 201);
        }else{
         return response()->json([
             "message" => "Address not found"
-          ], 404);
+          ], 400);
        }
     }
 
@@ -111,11 +111,13 @@ class AddressController extends Controller
         if(Address::where('id', $id)->exists()){
             $address = Address::find($id);
             $address->delete();
-            return response(['deleted_at' => $address->deleted_at], 200);
+            return response()->json([
+                "isSuccess" => true
+            ]);
        }else{
         return response()->json([
             "message" => "Address not found"
-          ], 404);
+          ], 400);
        }
     }
 }

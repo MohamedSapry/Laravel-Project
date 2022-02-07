@@ -15,8 +15,8 @@ class AreaController extends Controller
      * @return response()
      */
     public function getAllAreas() {
-        $areas = Area::get()->toJson(JSON_PRETTY_PRINT);
-        return response($areas, 200);
+        $areas = Area::get();
+        return response()->json($areas, 200);
     }
 
     /**
@@ -34,12 +34,13 @@ class AreaController extends Controller
         if($validator->fails()){
             return response()->json([
                 "message" => "data not valid"
-            ], 404);
+            ], 400);
         }
         
         $area = new Area;
         $area->city = $request->city;
         $area->country = $request->country;        
+        $area->save();
 
         return response()->json([
             "message" => "Area record created"
@@ -54,8 +55,8 @@ class AreaController extends Controller
      */
     public function getArea($id) {
        if(Area::where('id', $id)->exists()){
-            $area = Area::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($area, 200);
+            $area = Area::where('id', $id)->get();
+            return response()->json($area, 200);
        }else{
         return response()->json([
             "message" => "Area not found"
@@ -85,10 +86,12 @@ class AreaController extends Controller
             $area->city = $request->city;
             $area->country = $request->country;  
             $area->save;
+            
+            return response()->json($area, 201);
        }else{
         return response()->json([
             "message" => "Area not found"
-          ], 404);
+          ], 400);
        }
     }
 
@@ -101,11 +104,13 @@ class AreaController extends Controller
         if(Area::where('id', $id)->exists()){
             $area = Area::find($id);
             $area->delete();
-            return response(['deleted_at' => $area->deleted_at], 200);
+            return response()->json([
+                "isSuccess" => true
+            ]);
        }else{
         return response()->json([
             "message" => "Area not found"
-          ], 404);
+          ], 400);
        }
     }
 }
