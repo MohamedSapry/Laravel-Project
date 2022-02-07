@@ -98,7 +98,7 @@ class AreaController extends Controller
     /**
      * soft delete area
      * 
-     * 
+     * @return response()
      */
     public function deleteArea($id) {
         if(Area::where('id', $id)->exists()){
@@ -109,7 +109,7 @@ class AreaController extends Controller
             ]);
        }else{
         return response()->json([
-            "message" => "Area not found"
+            "isSuccess" => false
           ], 400);
        }
     }
