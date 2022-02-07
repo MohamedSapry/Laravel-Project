@@ -35,7 +35,6 @@ class CheckAddressDataJob implements ShouldQueue
     {
         //
         Address::chunk(100, function ($addresses){
-            echo("hello\n");
             $current = Carbon::now();
             foreach($addresses as $address){
                 $last_use = Carbon::parse($address->last_use_at);    

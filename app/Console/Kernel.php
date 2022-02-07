@@ -16,10 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        // $schedule->command('check_address_last_use')->call(function (){
-        //     $current = date('Y-m-d H:i:s');
-            
-        // });
+        $schedule->command('address_date:check')->everyMinute();
     }
 
     /**
