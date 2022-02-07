@@ -26,9 +26,10 @@ class AddLastUseToAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            //
-            $table->dropColumn('last_use_at');
-        });
+        if (Schema::hasColumn('addresses', 'last_use_at')){
+            Schema::table('addresses', function (Blueprint $table) { 
+                $table->dropColumn('last_use_at');
+            });
+        }
     }
 }
