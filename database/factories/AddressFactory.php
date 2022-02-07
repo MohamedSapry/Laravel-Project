@@ -23,7 +23,8 @@ class AddressFactory extends Factory
             'street_name' => $this->faker->streetName(),
             'floor' => $this->faker->randomDigit(),
             'number_of_apartment' => $this->faker->randomDigit(),
-            'defult_address' => $this->faker->boolean()
+            'defult_address' => $this->faker->boolean(),
+            'last_use_at' => $this->faker->dateTime($max = 'now', $timezone = null)
         ];
     }
 }
