@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->id();
             $table->string('city');
             $table->string('country');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

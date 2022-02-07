@@ -25,6 +25,7 @@ class CreateAddressesTable extends Migration
             $table->integer('number_of_apartment');
             $table->boolean('defult_address');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
