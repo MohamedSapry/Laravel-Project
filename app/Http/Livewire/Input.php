@@ -48,7 +48,7 @@ class Input extends Component
     }
     
     public function clickCity($city, $country, $area_id){
-        $this->emitUp('clickCity', $area_id);
+        $this->emitUp('clickCity', $city, $country, $area_id);
         $this->input = $city . ", " . $country;
         $this->areas = [];
     }
