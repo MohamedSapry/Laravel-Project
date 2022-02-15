@@ -30,7 +30,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::delete('students/{id}','ApiController@deleteUser');
 
 // Route::get('/addresses', [AddressController::class, 'getAlladdresses']);
-
 Route::get('addresssssss', [AddressController::class, 'getAlladdresses'] );
 Route::get('addresses/{id}', [AddressController::class, 'getAddress'] );
 // Route::post('addresses', [AddressController::class, 'createAddress']);
