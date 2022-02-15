@@ -19,4 +19,16 @@ class Address extends Model
     {
         return $this->belongsTo('App\Models\Area');
     }
+    
+    public function scopeAllowed($query, $user)
+    {   
+        if($user->isAn('admin')){
+            
+            return $query;
+        }else{
+            
+            return  $query->where('user_id', $user->id);
+        }
+        
+    }
 }

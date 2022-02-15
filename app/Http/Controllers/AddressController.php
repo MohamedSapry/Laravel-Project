@@ -7,6 +7,17 @@ use App\Models\Address;
 
 class AddressController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * listing all addresses
      * 
