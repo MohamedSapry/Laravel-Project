@@ -8,7 +8,13 @@ use App\Models\Area;
 class Input extends Component
 {
     
-    public $input, $errormessage, $label, $users, $areas, $search;
+    public $input, $errormessage, $label, $fieldType, $search, $options, $selectedFieldEvent, $listOptionsEvent;
+    protected function getListeners(){
+        return [$this->selectedFieldEvent => 'selectClicked', 
+                $this->listOptionsEvent => 'listOptions'
+                ];
+    }
+
     
     public function rules(){
         if($this->errormessage == "namefield"){
@@ -19,8 +25,7 @@ class Input extends Component
     }
 
     public function mount(){
-        $this->users = [];
-        $this->areas = [];
+        $this->options = [];
     }
 
     public function render()
@@ -33,39 +38,21 @@ class Input extends Component
     }
 
     public function addedAttribute(){
-        if($this->label == "UserName"){
-            $this->listUsers();
-        }else if($this->label == "City"){
-            $this->listAreas();
-        }
-        $this->emitUp('addedAttribute', $this->input, $this->label);
+        $this->emitUp('addedAttribute', $this->input, $this->fieldType);
     }
 
-    public function clickName($name, $user_id){
-        $this->emitUp('clickName', $name, $user_id);
-        $this->input = $name;
-        $this->users = [];
-    }
-    
-    public function clickCity($city, $country, $area_id){
-        $this->emitUp('clickCity', $city, $country, $area_id);
-        $this->input = $city . ", " . $country;
-        $this->areas = [];
-    }
-    public function listUsers(){
-        $name = '%' . $this->input . '%';
-        
-        $this->users = User::where('name', 'like', $name)
-                            ->limit(10)
-                            ->get();
+    public function listOptions($options){
+        $this->options = $options;
     }
 
-    public function listAreas(){
-        $city = '%' . $this->input . '%';
 
-        $this->areas = Area::where('city', 'like', $city)
-                      ->limit(10)
-                      ->get();
+    public function clickOption($object){
+        $this->emitup('clickOption', $object, $this->fieldType);
+    }
+
+    public function selectClicked($input){
+        $this->input = $input;
+        $this->options = [];
     }
 
 }

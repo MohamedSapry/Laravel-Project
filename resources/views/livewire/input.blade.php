@@ -1,34 +1,19 @@
 <div>
 
-    <label for={{ $label }}></label>
-    <input type = "text" id = {{ $label }} wire:model = "input" placeholder = {{ $label }} wire:keydown="addedAttribute()"><br></br>
+    <label for={{ $fieldType }}>{{ $label }}</label><br>
+    <input type = "text" id = {{ $fieldType }} wire:model = "input" wire:keydown="addedAttribute()"><br></br>
     @error('input') <span class="error">{{ $message }}</span><br></br> @enderror
-    @if($search == "true")
-        @if(isset($users) and count($users) > 0 and $input != "" and $label == "UserName")
-            <ul >  
-                @foreach($users as $user)
-                    <li wire:click="clickName('{{ $user->name }}', '{{ $user->id }}')">
-                        <p>
-                            {{ $user->name }}
-                        </p>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
+    @if($search == "true" and $input != "")
+        <ul>    
+            @foreach($options as $option)
+                <li wire:click="clickOption( {{ json_encode( $option ) }} )">    
+                    @if($fieldType == "UserName")
+                        <p> {{ $option['name'] }} </p>
+                    @elseif($fieldType == "City")
+                        <p> {{ $option['city'] }}</p>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
     @endif
-        
-    @if($search == "true")
-        @if(count($areas) > 0 and $input != "" and $label == "City")
-            <ul>
-                @foreach($areas as $area)
-                    <li wire:click="clickCity('{{ $area->city }}', '{{ $area->country }}', '{{ $area->id }}')">
-                        <p>
-                            {{ $area->city }}, {{ $area->country }}
-                        </p>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-    @endif
-
 </div>

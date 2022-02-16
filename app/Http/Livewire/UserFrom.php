@@ -23,23 +23,49 @@ class UserFrom extends Component
         'number_of_apartment' => 'required|integer'
     ];
     
-    protected $listeners = ['addedAttribute', 'clickName', 'clickCity'];
+    protected $listeners = ['addedAttribute', 'clickOption'];
 
     public function addedAttribute($input, $label){
         if($label == "UserName"){
-            $this->user_name = $input;  
-            $this->emit('listUsers');
+            $this->setUserName($input); 
+            $this->listUsers($input);  
         }else if($label == "StreetName"){
-            $this->street_name = $input;
+            $this->setStreetName($input);
         }else if($label == "BuildingNumber"){
-            $this->building_number = $input;
+            $this->setBuildingNumber($input);
         }else if($label == "Floor"){
-            $this->floor = $input;
+            $this->setFloor($input);
         }else if($label == "ApartmentNumber"){
-            $this->number_of_apartment = $input;
+            $this->setApartmentNumber($input);
         }else if($label == "City"){
-            $this->city = $input;
+            $this->setCity($input);
+            $this->listAreas($input);
         }
+    }
+
+
+    public function setUserName($input){
+        $this->user_name = $input;
+    }
+
+    public function setStreetName($input){
+        $this->street_name = $input;
+    }
+
+    public function setBuildingNumber($input){
+        $this->building_number = $input;
+    }
+
+    public function setFloor($input){
+        $this->floor = $input;
+    }
+
+    public function setApartmentNumber($input){
+        $this->number_of_apartment = $input;
+    }
+
+    public function setCity($input){
+        $this->city = $input;
     }
 
     public function mount(){
@@ -53,35 +79,53 @@ class UserFrom extends Component
                 ->layout('layouts.userform');
     }
 
-
-    public function listAreas(){
-        $city = '%' . $this->city . '%';
-
-        $this->areas = Area::where('city', 'like', $city)
-                      ->limit(10)
-                      ->get();
-    }
-
-    public function clickName($user_name, $user_id){
-        $this->user_name = $user_name;
-        $this->user_id = $user_id;
-        $this->users = [];
-    }
-
-    public function clickCity($city, $country, $area_id){
-        $this->city = $city . ", " . $country;
-        $this->area_id = $area_id;
-        $this->areas = [];
-    }
-
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
     }
 
+    public function listAreas($input){
+        $city = '%' . $input . '%';
+
+        $this->areas = Area::where('city', 'like', $city)
+                      ->limit(10)
+                      ->get();
+        $this->emit('city', $this->areas);
+    }
+
+    public function listUsers($input){
+        $name = '%' . $input . '%';
+
+        $this->users = User::where('name', 'like', $name)
+                            ->limit(10)
+                            ->get();
+        $this->emit('user', $this->users);
+    }
+
+    public function clickOption($object, $label){
+        if($label == "UserName"){
+            $this->clickName($object['name'], $object['id']);
+        }else if($label == "City"){
+            $this->clickCity($object['city'], $object['country'], $object['id']);
+        }
+    }
+
+    public function clickName($user_name, $user_id){
+        $this->user_name = $user_name;
+        $this->user_id = $user_id;
+        $this->emit('selectuser', $this->user_name);
+    }
+
+    public function clickCity($city, $country, $area_id){
+        $this->city = $city . ", " . $country;
+        $this->area_id = $area_id;
+        $this->emit('selectcity', $this->city);
+    }
+
+
+
     public function save(){
         $this->validate();
-
         $user_address = Address::where('user_id', $this->user_id)
                                 ->update([
                                     'defult_address' => false
