@@ -45,8 +45,8 @@ class Area extends Resource
         return [
             HasMany::make('addresses')->sortable(),
             ID::make(__('ID'), 'id')->sortable(),
-            Country::make('City')->sortable(),
-            Country::make('Country')->sortable(),
+            Text::make('City')->sortable(),
+            Text::make('Country')->sortable(),
         ];
     }
 
