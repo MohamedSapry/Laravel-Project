@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
 
 
 class Address extends Resource
@@ -45,7 +46,7 @@ class Address extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             HasOne::make('user'),
-            HasOne::make('area'),  
+            HasMany::make('area'),  
             Text::make('User Id')->sortable(),
             Text::make('Area Id')->sortable(),
             Text::make('Building Number')->sortable(),
@@ -76,7 +77,10 @@ class Address extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\DefaultAddressFilter,
+
+        ];
     }
 
     /**
