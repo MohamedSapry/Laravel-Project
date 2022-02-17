@@ -7,11 +7,7 @@
         <ul>    
             @foreach($options as $option)
                 <li wire:click="clickOption( {{ json_encode( $option ) }} )">    
-                    @if($fieldType == "UserName")
                         <p> {{ $option['name'] }} </p>
-                    @elseif($fieldType == "City")
-                        <p> {{ $option['city'] }}</p>
-                    @endif
                 </li>
             @endforeach
         </ul>
