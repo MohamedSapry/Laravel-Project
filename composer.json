@@ -5,16 +5,18 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.2.5|^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.75",
+        "laravel/framework": "^7.0|^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.7",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
-        "silber/bouncer": "v1.0.0-rc.12"
+        "silber/bouncer": "v1.0.0-rc.12",
+        "fideloper/proxy": "^4.2",
+        "laravel/nova": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -62,5 +64,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "nova": {
+            "type": "path",
+            "url": "./nova"
+        }
+    }
 }
