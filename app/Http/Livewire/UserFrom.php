@@ -25,19 +25,19 @@ class UserFrom extends Component
     
     protected $listeners = ['addedAttribute', 'clickOption'];
 
-    public function addedAttribute($input, $label){
-        if($label == "UserName"){
+    public function addedAttribute($input, $fieldType){
+        if($fieldType == "UserName"){
             $this->setUserName($input); 
             $this->listUsers($input);  
-        }else if($label == "StreetName"){
+        }else if($fieldType == "StreetName"){
             $this->setStreetName($input);
-        }else if($label == "BuildingNumber"){
+        }else if($fieldType == "BuildingNumber"){
             $this->setBuildingNumber($input);
-        }else if($label == "Floor"){
+        }else if($fieldType == "Floor"){
             $this->setFloor($input);
-        }else if($label == "ApartmentNumber"){
+        }else if($fieldType == "ApartmentNumber"){
             $this->setApartmentNumber($input);
-        }else if($label == "City"){
+        }else if($fieldType == "City"){
             $this->setCity($input);
             $this->listAreas($input);
         }
@@ -89,8 +89,16 @@ class UserFrom extends Component
 
         $this->areas = Area::where('city', 'like', $city)
                       ->limit(10)
-                      ->get();
-        $this->emit('city', $this->areas);
+                      ->get()
+                      ->toArray();
+        $options = [];
+        foreach($this->areas as $area){
+            $options[] = ['name' => $area['city'] . ', ' . $area['country']
+                          , 'id' => $area['id']
+                          , 'city' => $area['city']
+                          , 'country' => $area['country']];
+        }
+        $this->emit('city', $options);
     }
 
     public function listUsers($input){
@@ -98,14 +106,20 @@ class UserFrom extends Component
 
         $this->users = User::where('name', 'like', $name)
                             ->limit(10)
-                            ->get();
-        $this->emit('user', $this->users);
+                            ->get()
+                            ->toArray();
+        $options = [];
+        foreach($this->users as $user){
+            $options[] = ['name' => $user['name']
+                          , 'id' => $user['id']];
+        }
+        $this->emit('user', $options);
     }
 
-    public function clickOption($object, $label){
-        if($label == "UserName"){
+    public function clickOption($object, $fieldType){
+        if($fieldType == "UserName"){
             $this->clickName($object['name'], $object['id']);
-        }else if($label == "City"){
+        }else if($fieldType == "City"){
             $this->clickCity($object['city'], $object['country'], $object['id']);
         }
     }
