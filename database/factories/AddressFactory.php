@@ -17,7 +17,7 @@ class AddressFactory extends Factory
     {
         return [
             //
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'area_id' => Area::factory(),
             'building_number' => $this->faker->buildingNumber(),
             'street_name' => $this->faker->streetName(),
