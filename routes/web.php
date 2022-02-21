@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/addressestable', [App\Http\Controllers\AddressController::class, 'index'])->name('addressestable');
 Route::get('/addresses', UserTableSelfImpl::class)->name('addresses');
 Route::get('/newAddress', UserFrom::class);
