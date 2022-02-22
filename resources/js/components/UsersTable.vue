@@ -1,5 +1,4 @@
 <script>
-import axios from "axios";
 import { mapState } from 'vuex';
 import { mapActions } from 'vuex';
 import { mapMutations } from 'vuex';
@@ -16,9 +15,8 @@ export default {
             'getUsersData'
         ]),
         ...mapMutations([
-            'NEXT_PAGE',
-            'PREVIOUS_PAGE',
-
+            'nextPage',
+            'previousPage',
         ])
     },
     mounted() {
@@ -64,9 +62,9 @@ export default {
                 </table>
 
             <div class="center">
-                <button @click="PREVIOUS_PAGE(), getUsersData()">PREVIOS</button>
+                <button @click="previousPage(), getUsersData()">PREVIOS</button>
                 <span>{{page}}</span>
-                <button @click="NEXT_PAGE(), getUsersData()">NEXT</button>
+                <button @click="nextPage(), getUsersData()">NEXT</button>
             </div>
     </div>  
 </template>

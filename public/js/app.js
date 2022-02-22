@@ -5262,9 +5262,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -5274,10 +5272,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(['addresses', 'page', 'lastPage']),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(['getUsersData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['NEXT_PAGE', 'PREVIOUS_PAGE'])),
+  computed: (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(['addresses', 'page', 'lastPage']),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(['getUsersData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)(['nextPage', 'previousPage'])),
   mounted: function mounted() {
     console.log('Example component mounted.');
   },
@@ -5396,20 +5393,20 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     };
   },
   mutations: {
-    NEXT_PAGE: function NEXT_PAGE(state) {
+    nextPage: function nextPage(state) {
       if (state.page < state.lastPage) {
         state.page++;
       }
     },
-    PREVIOUS_PAGE: function PREVIOUS_PAGE(state) {
+    previousPage: function previousPage(state) {
       if (state.page != 1) {
         state.page--;
       }
     },
-    STORE_USERS_DATA: function STORE_USERS_DATA(state, usersdata) {
+    storeUsersData: function storeUsersData(state, usersdata) {
       state.addresses = usersdata;
     },
-    NUMBER_OF_PAGES: function NUMBER_OF_PAGES(state, n) {
+    numberOfPages: function numberOfPages(state, n) {
       state.lastPage = n;
     }
   },
@@ -5418,9 +5415,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       var state = _ref.state;
       var res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(function (data) {
         console.log("-------------START GETTING DATA-------------");
-        store.commit('STORE_USERS_DATA', data.data.data);
+        store.commit('storeUsersData', data.data.data);
         console.log(state.addresses);
-        store.commit('NUMBER_OF_PAGES', data.data.last_page);
+        store.commit('numberOfPages', data.data.last_page);
         console.log("-------------END GETTING DATA-------------");
       });
     }
@@ -28423,7 +28420,7 @@ var render = function () {
         {
           on: {
             click: function ($event) {
-              _vm.PREVIOUS_PAGE(), _vm.getUsersData()
+              _vm.previousPage(), _vm.getUsersData()
             },
           },
         },
@@ -28437,7 +28434,7 @@ var render = function () {
         {
           on: {
             click: function ($event) {
-              _vm.NEXT_PAGE(), _vm.getUsersData()
+              _vm.nextPage(), _vm.getUsersData()
             },
           },
         },

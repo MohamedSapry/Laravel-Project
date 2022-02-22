@@ -13,21 +13,21 @@ const store = new Vuex.Store({
     },
 
     mutations: {
-        NEXT_PAGE(state){
+        nextPage(state){
             if(state.page < state.lastPage){
                 state.page++
             }
         },
-        PREVIOUS_PAGE(state){
+        previousPage(state){
             if(state.page != 1){
                 state.page--
             }
         },
         
-        STORE_USERS_DATA(state, usersdata){
+        storeUsersData(state, usersdata){
             state.addresses = usersdata
         },
-        NUMBER_OF_PAGES(state, n){
+        numberOfPages(state, n){
             state.lastPage = n
         },
     },
@@ -35,9 +35,9 @@ const store = new Vuex.Store({
         getUsersData({ state }){
             const res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(data => {
                 console.log("-------------START GETTING DATA-------------")
-                store.commit('STORE_USERS_DATA', data.data.data)
+                store.commit('storeUsersData', data.data.data)
                 console.log(state.addresses)
-                store.commit('NUMBER_OF_PAGES', data.data.last_page)
+                store.commit('numberOfPages', data.data.last_page)
                 console.log("-------------END GETTING DATA-------------")
             })
         }
