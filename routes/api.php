@@ -24,9 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('usersdata', [UserTableController::class, 'getAllUsersData'] );
-
-Route::get('addresses', [AddressController::class, 'getAlladdresses'] );
+Route::get('usersdata', [AddressController::class, 'getAlladdresses'] );
 Route::get('addresses/{id}', [AddressController::class, 'getAddress'] );
 Route::put('addresses/{id}',  [AddressController::class, 'updateAddress']);
 Route::delete('addresses/{id}', [AddressController::class, 'deleteAddress']);
