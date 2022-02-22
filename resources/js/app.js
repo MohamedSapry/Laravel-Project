@@ -3,11 +3,14 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Vuex from 'vuex'
 
 require('./bootstrap');
 
+window.Vuex = Vuex;
 window.Vue = require('vue').default;
-
+Vue.use(Vuex)
+import store from "./store/index"
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -29,4 +32,5 @@ Vue.component('example-component', require('./components/UsersTable.vue').defaul
 
 const app = new Vue({
     el: '#userstable',
+    store: store,
 });
