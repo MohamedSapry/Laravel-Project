@@ -1,36 +1,33 @@
 <script>
 import axios from "axios";
+import { mapState } from 'vuex';
+import { mapActions } from 'vuex';
+import { mapMutations } from 'vuex';
+
+
 export default {
+    computed: mapState([
+        'addresses',
+        'page',
+        'lastPage'
+    ]),
+    methods :{
+        ...mapActions([
+            'getUsersData'
+        ]),
+        ...mapMutations([
+            'NEXT_PAGE',
+            'PREVIOUS_PAGE',
+
+        ])
+    },
     mounted() {
         console.log('Example component mounted.')
     },
-    data(){
-        return {
-            addresses :[],
-            page : 1,
-            firstPage : 0,
-            lastPage : -1
-        }
-    },
+    
     created() {
-        this.getUsersData();
+        this.$store.dispatch('getUsersData')
     },
-    methods:{
-        async getUsersData(page){
-            if(page === 1 && this.page < this.lastPage){
-                this.page++
-            }else if(page === -1 && this.page != this.firstPage){
-                this.page--
-            }
-            const res = axios.get('http://localhost:8001/api/usersdata?page=' + this.page).then(data => {
-                console.log(data)
-                this.addresses = data.data.data
-                this.firstPage = data.data.from
-                this.lastPage = data.data.last_page
-                console.log(this.firstPage)
-            })
-        }
-    }
 }
 </script>
 
@@ -67,9 +64,9 @@ export default {
                 </table>
 
             <div class="center">
-                <button @click="getUsersData(-1)">PREVIOS</button>
+                <button @click="PREVIOUS_PAGE(), getUsersData()">PREVIOS</button>
                 <span>{{page}}</span>
-                <button @click="getUsersData(1)">NEXT</button>
+                <button @click="NEXT_PAGE(), getUsersData()">NEXT</button>
             </div>
     </div>  
 </template>
