@@ -32,12 +32,12 @@ const store = new Vuex.Store({
         },
     },
     actions:{
-        getUsersData(context){
-            const res = axios.get('http://localhost:8001/api/usersdata?page=' + context.state.page).then(data => {
+        getUsersData({ state }){
+            const res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(data => {
                 console.log("-------------START GETTING DATA-------------")
-                context.commit('STORE_USERS_DATA', data.data.data)
-                console.log(context.state.addresses)
-                context.commit('NUMBER_OF_PAGES', data.data.last_page)
+                store.commit('STORE_USERS_DATA', data.data.data)
+                console.log(state.addresses)
+                store.commit('NUMBER_OF_PAGES', data.data.last_page)
                 console.log("-------------END GETTING DATA-------------")
             })
         }

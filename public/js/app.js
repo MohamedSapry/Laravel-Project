@@ -5414,12 +5414,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     }
   },
   actions: {
-    getUsersData: function getUsersData(context) {
-      var res = axios.get('http://localhost:8001/api/usersdata?page=' + context.state.page).then(function (data) {
+    getUsersData: function getUsersData(_ref) {
+      var state = _ref.state;
+      var res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(function (data) {
         console.log("-------------START GETTING DATA-------------");
-        context.commit('STORE_USERS_DATA', data.data.data);
-        console.log(context.state.addresses);
-        context.commit('NUMBER_OF_PAGES', data.data.last_page);
+        store.commit('STORE_USERS_DATA', data.data.data);
+        console.log(state.addresses);
+        store.commit('NUMBER_OF_PAGES', data.data.last_page);
         console.log("-------------END GETTING DATA-------------");
       });
     }
