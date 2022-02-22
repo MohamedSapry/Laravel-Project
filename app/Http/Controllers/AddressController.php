@@ -18,6 +18,10 @@ class AddressController extends Controller
         $this->middleware('auth');
     }
 
+    public function index(){
+        return view('UserTable');
+    }
+
     /**
      * listing all addresses
      * 
