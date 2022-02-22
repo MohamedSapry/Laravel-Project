@@ -5275,11 +5275,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(['addresses', 'page', 'lastPage']),
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(['getUsersData'])), (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)(['nextPage', 'previousPage'])),
-  mounted: function mounted() {
-    console.log('Example component mounted.');
-  },
   created: function created() {
-    this.$store.dispatch('getUsersData');
+    this.getUsersData();
   }
 });
 
@@ -5304,7 +5301,6 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vuex = vuex__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
@@ -5318,7 +5314,7 @@ Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', (__webpack_require__(/*! ./components/UsersTable.vue */ "./resources/js/components/UsersTable.vue")["default"]));
+Vue.component('userstable', (__webpack_require__(/*! ./components/UsersTable.vue */ "./resources/js/components/UsersTable.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -5385,12 +5381,10 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: function state() {
-    return {
-      addresses: [],
-      page: 1,
-      lastPage: -1
-    };
+  state: {
+    addresses: [],
+    page: 1,
+    lastPage: -1
   },
   mutations: {
     nextPage: function nextPage(state) {
@@ -28386,10 +28380,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
     _c("table", { staticClass: "center" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "tbody",
@@ -28444,22 +28436,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidenav" }, [
-      _c("a", { attrs: { href: "http://localhost:8001/addresses" } }, [
-        _vm._v("Users Table"),
-      ]),
-      _c("br"),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "http://localhost:8001/newAddress" } }, [
-        _vm._v("New Address"),
-      ]),
-      _c("br"),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
