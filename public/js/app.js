@@ -5408,11 +5408,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     getUsersData: function getUsersData(_ref) {
       var state = _ref.state;
       var res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(function (data) {
-        console.log("-------------START GETTING DATA-------------");
         store.commit('storeUsersData', data.data.data);
-        console.log(state.addresses);
         store.commit('numberOfPages', data.data.last_page);
-        console.log("-------------END GETTING DATA-------------");
       });
     }
   }
