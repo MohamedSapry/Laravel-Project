@@ -19,53 +19,45 @@ export default {
             'previousPage',
         ])
     },
-    mounted() {
-        console.log('Example component mounted.')
-    },
     
     created() {
-        this.$store.dispatch('getUsersData')
+        this.getUsersData()
     },
 }
 </script>
 
 <template>
     <div>
-            <div class="sidenav">
-                <a href="http://localhost:8001/addresses">Users Table</a><br>
-                <a href="http://localhost:8001/newAddress">New Address</a><br>
-            </div>
+        <table class="center">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Street Name</th>
+                    <th>Building Number</th>
+                    <th>Floor</th>
+                    <th>Apartment Number</th>
+                    <th>Area Name</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="address in addresses" :key="address.id">
+                    <td>{{address.name}}</td>
+                    <td>{{address.street_name}}</td>
+                    <td>{{address.building_number}}</td>
+                    <td>{{address.floor}}</td>
+                    <td>{{address.number_of_apartment}}</td>
+                    <td>{{address.country}}</td>
+                    <td>{{address.city}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-            <table class="center">
-                    <thead>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Street Name</th>
-                            <th>Building Number</th>
-                            <th>Floor</th>
-                            <th>Apartment Number</th>
-                            <th>Area Name</th>
-                            <th>City</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="address in addresses" :key="address.id">
-                            <td>{{address.name}}</td>
-                            <td>{{address.street_name}}</td>
-                            <td>{{address.building_number}}</td>
-                            <td>{{address.floor}}</td>
-                            <td>{{address.number_of_apartment}}</td>
-                            <td>{{address.country}}</td>
-                            <td>{{address.city}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            <div class="center">
-                <button @click="previousPage(), getUsersData()">PREVIOS</button>
-                <span>{{page}}</span>
-                <button @click="nextPage(), getUsersData()">NEXT</button>
-            </div>
+        <div class="center">
+            <button @click="previousPage(), getUsersData()">PREVIOS</button>
+            <span>{{page}}</span>
+            <button @click="nextPage(), getUsersData()">NEXT</button>
+        </div>
     </div>  
 </template>
 
