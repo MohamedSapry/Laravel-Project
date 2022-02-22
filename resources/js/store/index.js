@@ -4,12 +4,10 @@ import Vue  from 'vue'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    state (){
-        return{
-            addresses :[],
-            page : 1,
-            lastPage : -1
-        }
+    state: {
+        addresses :[],
+        page : 1,
+        lastPage : -1
     },
 
     mutations: {
@@ -31,7 +29,7 @@ const store = new Vuex.Store({
             state.lastPage = n
         },
     },
-    actions:{
+    actions: {
         getUsersData({ state }){
             const res = axios.get('http://localhost:8001/api/usersdata?page=' + state.page).then(data => {
                 console.log("-------------START GETTING DATA-------------")
