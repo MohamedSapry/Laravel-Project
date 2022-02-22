@@ -9,7 +9,7 @@
     </head>
     <body>
         <div id="userstable">
-            <example-component></example-component>
+            <userstable></userstable>
         </div>
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>

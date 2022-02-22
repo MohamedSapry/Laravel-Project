@@ -7,7 +7,6 @@ import Vuex from 'vuex'
 
 require('./bootstrap');
 
-window.Vuex = Vuex;
 window.Vue = require('vue').default;
 Vue.use(Vuex)
 import store from "./store/index"
@@ -22,7 +21,7 @@ import store from "./store/index"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/UsersTable.vue').default);
+Vue.component('userstable', require('./components/UsersTable.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
