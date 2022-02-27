@@ -1,5 +1,5 @@
 import UsersTable from './components/UsersTable'
-import store from './store/index'
+import store from './store/addressesTableStore'
 Nova.booting((Vue, router, novastore) => {
   router.addRoutes([
     {
@@ -9,5 +9,5 @@ Nova.booting((Vue, router, novastore) => {
     },
   ]);
   Vue.component('users-table', UsersTable)
-  novastore.registerModule('storeModule', store)
+  novastore.registerModule('addressesTableStore', store)
 })

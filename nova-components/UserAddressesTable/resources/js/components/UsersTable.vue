@@ -5,16 +5,16 @@ import { mapMutations } from 'vuex';
 
 
 export default {
-    computed: mapState('storeModule', [
+    computed: mapState('addressesTableStore', [
         'addresses',
         'page',
         'lastPage'
     ]),
     methods :{
-        ...mapActions('storeModule', [
+        ...mapActions('addressesTableStore', [
             'getUsersData'
         ]),
-        ...mapMutations('storeModule', [
+        ...mapMutations('addressesTableStore', [
             'nextPage',
             'previousPage',
         ])
