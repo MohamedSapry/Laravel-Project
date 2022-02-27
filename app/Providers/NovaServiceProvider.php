@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Acme\UserAddressesTable\UserAddressesTable;
+use Acme\AddressesForm\AddressesForm;
+
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -77,7 +80,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new UserAddressesTable,
+            new AddressesForm,
+        ];
     }
 
     /**
