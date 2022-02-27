@@ -48,12 +48,12 @@ export default {
             city: null,
         }
     },
-    computed: mapState('storeModule2',[
+    computed: mapState('addressesFormStore',[
         'userNames',
         'cities',
     ]),
     methods :{
-        ...mapMutations('storeModule2',[
+        ...mapMutations('addressesFormStore',[
             'listUsers',
             'listCities',
             'setUserId',
@@ -65,7 +65,7 @@ export default {
             'getUserNameFromInput',
             'getCityNameFromInput'
         ]),
-        ...mapActions('storeModule2',[
+        ...mapActions('addressesFormStore',[
             'findUsers',
             'findCities',
             'createAddress'

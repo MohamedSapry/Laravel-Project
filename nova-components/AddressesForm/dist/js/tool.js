@@ -1835,7 +1835,7 @@ module.exports = __webpack_require__(24);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_UserForm__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_UserForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_UserForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_index__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_addressesFormStore__ = __webpack_require__(13);
 
 
 Nova.booting(function (Vue, router, novastore) {
@@ -1845,7 +1845,7 @@ Nova.booting(function (Vue, router, novastore) {
     component: __webpack_require__(19)
   }]);
   Vue.component('user-form', __WEBPACK_IMPORTED_MODULE_0__components_UserForm___default.a);
-  novastore.registerModule('storeModule2', __WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */]);
+  novastore.registerModule('addressesFormStore', __WEBPACK_IMPORTED_MODULE_1__store_addressesFormStore__["a" /* default */]);
 });
 
 /***/ }),
@@ -1883,7 +1883,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -1961,6 +1961,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -1977,28 +1978,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             floor: null,
             apartmentNumber: null,
             city: null
-            // cities: [],
-            // listUsers : false,
-            // listCities : false
         };
     },
 
-    computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["d" /* mapState */])('storeModule2', [
-    // 'userId',
-    // 'areaId',
-    // 'userName',
-    // 'streetName',
-    // 'buildingNumber',
-    // 'floor',
-    // 'apartmentNumber',
-    // 'city',
-    'userNames', 'cities']
-    // 'listUsers',
-    // 'listCities'
-    ),
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapMutations */])('storeModule2', ['listUsers', 'listCities',
-    // 'setUserName',
-    'setCityName', 'setUserId', 'setAreaId', 'setBuildingNumber', 'setStreetName', 'setFloor', 'setapartmentNumber', 'getUserNameFromInput', 'getCityNameFromInput']), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])('storeModule2', ['findUsers', 'findCities', 'createAddress']), {
+    computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["d" /* mapState */])('addressesFormStore', ['userNames', 'cities']),
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapMutations */])('addressesFormStore', ['listUsers', 'listCities', 'setUserId', 'setAreaId', 'setBuildingNumber', 'setStreetName', 'setFloor', 'setapartmentNumber', 'getUserNameFromInput', 'getCityNameFromInput']), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])('addressesFormStore', ['findUsers', 'findCities', 'createAddress']), {
         setUserName: function setUserName(userName) {
             console.log("user Name : " + userName);
             this.userName = userName;
@@ -2006,89 +1990,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         setCityName: function setCityName(city) {
             console.log("City Name : " + city);
             this.city = city;
-            this.lu;
         }
     })
-
-    // data(){
-    //     return {
-    //         userId: null,
-    //         areaId: null,
-    //         userName: null,
-    //         streetName: null,
-    //         buildingNumber: null,
-    //         floor: null,
-    //         apartmentNumber: null,
-    //         city: null,
-    //         userNames: [],
-    //         cities: [],
-    //         listUsers : false,
-    //         listCities : false
-    //     }
-    // },
-    // metaInfo() {
-    //     return {
-    //       title: 'AddressesForm',
-    //     }
-    // },
-    // mounted() {
-    //     //
-    // },
-    // methods: {
-    //     findUsers(){
-    //         console.log(this.userName)
-    //         this.listUsers = true
-    //         this.users = axios.get("http://localhost:8001/nova-api/users?search="+this.userName).then(
-    //             data => {
-    //                 this.userNames = data.data.resources
-    //                 // console.log(this.userNames)
-    //             }
-    //         )
-    //         console.log(this.userNames)
-    //         // console.log(this.users.data.resources.title)
-    //     },
-    //     setUserName(userName, userId){
-    //         console.log(userName)
-    //         this.userName = userName
-    //         this.userId = userId
-    //         this.listUsers = false
-    //         console.log(this.userId)
-    //     },
-    //     findCities(){
-    //         console.log(this.city)
-    //         this.listCities = true
-    //         this.area = axios.get("http://localhost:8001/nova-api/areas?search="+this.city).then(
-    //             data => {
-    //                 this.cities = data.data.resources
-    //                 console.log(this.cities)
-    //             }
-    //         )
-    //         // console.log(this.area)
-    //     },
-    //     setCityName(city, areaId){
-    //         this.city = city
-    //         this.areaId = areaId
-    //         this.listCities = false
-    //         console.log(this.areaId)
-    //     },
-    //     createAddress(){
-    //         const today = new Date();
-    //         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    //         const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    //         const address = new FormData();
-    //         address.append("user_id", this.userId)
-    //         address.append("area_id", this.areaId)
-    //         address.append("building_number", this.buildingNumber)
-    //         address.append("street_name", this.streetName)
-    //         address.append("floor", this.floor)
-    //         address.append("number_of_apartment", this.apartmentNumber)
-    //         address.append("defult_address", 1)
-    //         address.append("last_use_at", date+' '+time)
-
-    //         console.log(address)
-    //         const response = axios.post("http://localhost:8001/nova-api/addresses?editing=true&editMode=create", address)
-    //     }
-    // }
 });
 
 /***/ }),
@@ -2130,7 +2033,7 @@ var render = function() {
     }),
     _c("br"),
     _vm._v(" "),
-    _vm.listUsers && _vm.userName != ""
+    _vm.userName != ""
       ? _c(
           "ul",
           _vm._l(_vm.userNames, function(user, index) {
@@ -2308,7 +2211,7 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _vm.listCities && _vm.city != ""
+    _vm.city != ""
       ? _c(
           "ul",
           _vm._l(_vm.cities, function(city, index) {
@@ -2430,31 +2333,21 @@ var store = {
                 commit = _ref.commit;
 
             console.log(state.useName);
-            // state.listUsers = true
             var username = state.useName;
             var users = axios.get("http://localhost:8001/nova-api/users?search=" + username).then(function (data) {
-                // console.log(username)
                 commit('listUsers', data.data.resources);
-                // console.log(state.userNames)
-                // this.userNames = data.data.resources
-                // console.log(this.userNames)
             });
-            // console.log(users)
         },
         findCities: function findCities(_ref2) {
             var state = _ref2.state,
                 commit = _ref2.commit;
 
             console.log(state.city);
-            // state.listCities = true
             var city = state.city;
             var area = axios.get("http://localhost:8001/nova-api/areas?search=" + city).then(function (data) {
                 console.log(city);
                 commit('listCities', data.data.resources);
-                // this.cities = data.data.resources
-                // console.log(this.cities)
             });
-            // console.log(this.area)
         },
         createAddress: function createAddress(_ref3) {
             var state = _ref3.state;
@@ -2473,7 +2366,7 @@ var store = {
             address.append("last_use_at", date + ' ' + time);
 
             console.log(address);
-            var response = axios.post("http://localhost:8001/nova-api/addresses?editing=true&editMode=create", address);
+            var response = Nova.request().post("http://localhost:8001/nova-api/addresses?editing=true&editMode=create", address);
         }
     }
 

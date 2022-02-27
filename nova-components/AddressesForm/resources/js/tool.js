@@ -1,5 +1,5 @@
 import UserForm from './components/UserForm'
-import store from './store/index'
+import store from './store/addressesFormStore'
 Nova.booting((Vue, router, novastore) => {
   router.addRoutes([
     {
@@ -9,5 +9,5 @@ Nova.booting((Vue, router, novastore) => {
     },
   ])
   Vue.component('user-form', UserForm)
-  novastore.registerModule('storeModule2', store)
+  novastore.registerModule('addressesFormStore', store)
 })
