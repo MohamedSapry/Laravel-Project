@@ -31,7 +31,7 @@ class BouncerSeeder extends Seeder
             'name' => 'view-addresses',
             'title' => 'View Addresses',
         ]);
-        $user = User::where('name', "mohamed")->first();
+        $user = User::where('name', "test3")->first();
         $user->assign('admin');
     }
 }

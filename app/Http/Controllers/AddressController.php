@@ -13,9 +13,13 @@ class AddressController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    public function index(){
+        return view('UserTable');
     }
 
     /**
@@ -24,7 +28,9 @@ class AddressController extends Controller
      * @return response()
      */
     public function getAlladdresses() {
-        $addresses = Address::get();
+        $addresses = Address::join('users', 'users.id', '=', 'addresses.user_id')
+                            ->join('areas', 'areas.id', '=', 'addresses.area_id')
+                            ->paginate(10);
         return response()->json($addresses, 200);
     }
 
