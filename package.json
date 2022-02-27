@@ -7,7 +7,15 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "build-users-table": "cd nova-components/UsersTable && npm run dev",
+        "build-users-table-prod": "cd nova-components/UsersTable && npm run prod",
+        "build-users-addresses-table": "cd nova-components/UsersAddressesTable && npm run dev",
+        "build-users-addresses-table-prod": "cd nova-components/UsersAddressesTable && npm run prod",
+        "build-user-addresses-table": "cd nova-components/UserAddressesTable && npm run dev",
+        "build-user-addresses-table-prod": "cd nova-components/UserAddressesTable && npm run prod",
+        "build-addresses-form": "cd nova-components/AddressesForm && npm run dev",
+        "build-addresses-form-prod": "cd nova-components/AddressesForm && npm run prod"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",

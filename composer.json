@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.2.5|^7.3|^8.0",
@@ -16,7 +19,9 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
-        "silber/bouncer": "v1.0.0-rc.12"
+        "silber/bouncer": "v1.0.0-rc.12",
+        "acme/user-addresses-table": "*",
+        "acme/addresses-form": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -69,6 +74,14 @@
         "nova": {
             "type": "path",
             "url": "./nova"
+        },
+        "2": {
+            "type": "path",
+            "url": "./nova-components/UserAddressesTable"
+        },
+        "3": {
+            "type": "path",
+            "url": "./nova-components/AddressesForm"
         }
     }
 }
