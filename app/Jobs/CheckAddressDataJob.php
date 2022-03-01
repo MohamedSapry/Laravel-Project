@@ -34,12 +34,12 @@ class CheckAddressDataJob implements ShouldQueue
     public function handle()
     {
         //
-        Address::chunk(100, function ($addresses){
-            $current = Carbon::now();
+        $current = Carbon::now();
+        Address::where("defult_address", false)->chunk(100, function ($addresses) use ($current){
             foreach($addresses as $address){
                 $last_use = Carbon::parse($address->last_use_at);    
-                $diff = $current->diffInDays($last_use);    
-                if($diff > 1 and $address->defult_address == false){
+                $diff = $current->diffInDays($last_use);
+                if($diff > 1){
                     $address->delete();
                 }
             }
