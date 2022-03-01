@@ -37,7 +37,7 @@ class AreaController extends Controller
             ], 400);
         }
         
-        $area = new Area($request->all());
+        $area = new Area();
         $area->city = $request->city;
         $area->country = $request->country;        
         $area->save();
