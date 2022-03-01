@@ -50,7 +50,7 @@ class AddressController extends Controller
             'number_of_apartment' => 'required|integer'
         ]);
 
-        $address = new Address;
+        $address = new Address($request->all());
         $address->user_id = $request->user_id;
         $address->area_id = $request->area_id;
         $address->building_number = $request->building_number;
