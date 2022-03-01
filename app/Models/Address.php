@@ -10,6 +10,20 @@ class Address extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'area_id',
+        'building_number',
+        'street_name',
+        'floor',
+        'number_of_apartment',
+        'defult_address',
+    ];
     
     public function user()
     {
@@ -31,4 +45,5 @@ class Address extends Model
         }
         
     }
+    public $casts = ['defult_address' => "boolean"];
 }
